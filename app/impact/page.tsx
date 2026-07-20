@@ -33,11 +33,11 @@ export default function ImpactPage() {
   }, [])
 
   const milestones = [
-    { label: 'First 100 clients', target: 100, points: 100 },
-    { label: '500 clients helped', target: 500, points: 250 },
-    { label: '10 festivals attended', target: 10, points: 150, value: festivals },
-    { label: '1,000 clients helped', target: 1000, points: 500 },
-    { label: '50 festivals attended', target: 50, points: 300, value: festivals },
+    { label: 'First 100 clients', target: 100, points: 1 },
+    { label: '500 clients helped', target: 500, points: 3 },
+    { label: '10 festivals attended', target: 10, points: 2, value: festivals },
+    { label: '1,000 clients helped', target: 1000, points: 5 },
+    { label: '50 festivals attended', target: 50, points: 4, value: festivals },
   ]
 
   if (loading) return (
@@ -92,7 +92,7 @@ export default function ImpactPage() {
                   <span style={{ color: complete ? 'rgba(255,255,255,0.8)' : 'rgba(255,255,255,0.35)', fontSize: '12px', display: 'flex', alignItems: 'center', gap: '6px' }}>
                     {complete ? '✓' : '🔒'} {m.label}
                   </span>
-                  <span style={{ color: complete ? '#5dcaa5' : 'rgba(255,255,255,0.25)', fontSize: '11px', fontWeight: '500' }}>+{m.points} pts</span>
+                  <span style={{ color: complete ? '#5dcaa5' : 'rgba(255,255,255,0.25)', fontSize: '11px', fontWeight: '500' }}>+{m.points} ⭐</span>
                 </div>
                 <div style={{ background: 'rgba(255,255,255,0.1)', borderRadius: '6px', height: '4px', overflow: 'hidden' }}>
                   <div style={{ background: '#1d9e75', height: '100%', width: `${pct}%`, borderRadius: '6px' }}></div>

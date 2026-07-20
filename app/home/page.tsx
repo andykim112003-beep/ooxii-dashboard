@@ -50,7 +50,7 @@ export default function HomePage() {
     router.push('/')
   }
 
-  const nextReward = 2000
+  const nextReward = 20
   const progress = Math.min((points / nextReward) * 100, 100)
 
   if (loading) return (
@@ -109,8 +109,8 @@ export default function HomePage() {
           <div style={{ background: '#1d9e75', height: '100%', width: `${progress}%`, borderRadius: '8px' }}></div>
         </div>
         <div style={{ display: 'flex', justifyContent: 'space-between', color: 'rgba(255,255,255,0.4)', fontSize: '10px' }}>
-          <span>{(nextReward - points).toLocaleString()} pts to next reward</span>
-          <span>{nextReward.toLocaleString()} pts</span>
+          <span>{(nextReward - points).toLocaleString()} ⭐ to next reward</span>
+          <span>{nextReward.toLocaleString()} ⭐</span>
         </div>
       </div>
 
