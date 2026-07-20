@@ -226,7 +226,7 @@ export default function AdminPage() {
 
       </div>
 
-      <div style={{ background: '#252660', borderTop: '0.5px solid rgba(255,255,255,0.1)', padding: '8px 0 6px', display: 'flex', justifyContent: 'space-around', flexShrink: 0 }}>
+      <div style={{ background: '#252660', borderTop: '0.5px solid rgba(255,255,255,0.1)', padding: '8px 0 6px', display: 'flex', justifyContent: 'space-around', marginTop: 'auto'}}>
         {[
           { label: 'Overview', icon: '📊' },
           { label: 'Testers', icon: '👥' },

@@ -8,7 +8,7 @@ export default function SessionComplete() {
   const [saving, setSaving] = useState(false)
   const [done, setDone] = useState(false)
   const clientsTested = 1
-  const pointsEarned = 10
+  const pointsEarned = 1
   const hasRun = useRef(false)
 
 
@@ -76,9 +76,8 @@ useEffect(() => {
         <div style={{ color: 'rgba(255,255,255,0.55)', fontSize: '13px', textAlign: 'center', marginBottom: '32px' }}>Great work — your progress has been saved</div>
 
         <div style={{ width: '100%', background: 'rgba(255,255,255,0.08)', border: '0.5px solid rgba(255,255,255,0.18)', borderRadius: '14px', padding: '20px', marginBottom: '12px', textAlign: 'center' }}>
-          <div style={{ color: 'rgba(255,255,255,0.5)', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.4px', marginBottom: '8px' }}>Points earned</div>
-          <div style={{ color: '#5dcaa5', fontSize: '42px', fontWeight: '500', lineHeight: '1' }}>+{pointsEarned}</div>
-          <div style={{ color: 'rgba(255,255,255,0.4)', fontSize: '12px', marginTop: '4px' }}>pts</div>
+          <div style={{ color: '#5dcaa5', fontSize: '42px', fontWeight: '500', lineHeight: '1' }}>+{pointsEarned} ⭐</div>
+          <div style={{ color: 'rgba(255,255,255,0.4)', fontSize: '12px', marginTop: '4px' }}>star earned</div>
         </div>
 
         <div style={{ width: '100%', background: 'rgba(255,255,255,0.08)', border: '0.5px solid rgba(255,255,255,0.18)', borderRadius: '14px', padding: '16px', marginBottom: '32px' }}>

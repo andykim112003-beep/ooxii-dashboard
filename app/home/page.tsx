@@ -54,13 +54,13 @@ export default function HomePage() {
   const progress = Math.min((points / nextReward) * 100, 100)
 
   if (loading) return (
-    <main style={{ minHeight: '100vh', background: '#2d2f6e', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    <main style={{ minHeight: '100dvh', background: '#2d2f6e', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <div style={{ color: 'rgba(255,255,255,0.6)', fontSize: '14px' }}>Loading...</div>
     </main>
   )
 
   return (
-    <main style={{ minHeight: '100vh', background: '#2d2f6e', fontFamily: 'sans-serif', maxWidth: '430px', margin: '0 auto' }}>
+    <main style={{ minHeight: '100dvh', background: '#2d2f6e', fontFamily: 'sans-serif', maxWidth: '430px', margin: '0 auto' }}>
       <div style={{ background: '#252660', padding: '12px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <span style={{ color: '#fff', fontSize: '17px', fontWeight: '500', letterSpacing: '1px' }}>ooxii</span>
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
@@ -94,7 +94,7 @@ export default function HomePage() {
         </div>
       </div>
 
-      <div style={{ padding: '14px 16px 6px', color: 'rgba(255,255,255,0.4)', fontSize: '10px', letterSpacing: '0.5px', textTransform: 'uppercase' }}>Your points</div>
+      <div style={{ padding: '14px 16px 6px', color: 'rgba(255,255,255,0.4)', fontSize: '10px', letterSpacing: '0.5px', textTransform: 'uppercase' }}>Your stars</div>
 
       <div style={{ margin: '0 12px', background: 'rgba(255,255,255,0.08)', border: '0.5px solid rgba(255,255,255,0.18)', borderRadius: '14px', padding: '14px' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}>
@@ -103,7 +103,7 @@ export default function HomePage() {
         </div>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: '5px', marginBottom: '8px' }}>
           <span style={{ color: '#fff', fontSize: '34px', fontWeight: '500', lineHeight: '1' }}>{points.toLocaleString()}</span>
-          <span style={{ color: 'rgba(255,255,255,0.5)', fontSize: '12px' }}>pts</span>
+          <span style={{ color: 'rgba(255,255,255,0.5)', fontSize: '20px' }}>⭐</span>
         </div>
         <div style={{ background: 'rgba(255,255,255,0.12)', borderRadius: '8px', height: '5px', marginBottom: '5px', overflow: 'hidden' }}>
           <div style={{ background: '#1d9e75', height: '100%', width: `${progress}%`, borderRadius: '8px' }}></div>
@@ -114,7 +114,7 @@ export default function HomePage() {
         </div>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0,1fr))', gap: '7px', margin: '8px 12px 0' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0,1fr))', gap: '7px', margin: '8px 12px 0', paddingBottom: '80px' }}>
         <div style={{ background: 'rgba(255,255,255,0.08)', border: '0.5px solid rgba(255,255,255,0.12)', borderRadius: '12px', padding: '10px' }}>
           <div style={{ color: 'rgba(255,255,255,0.45)', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.4px', marginBottom: '3px' }}>This month</div>
           <div style={{ color: '#fff', fontSize: '20px', fontWeight: '500' }}>{monthlyClients}</div>
@@ -127,7 +127,7 @@ export default function HomePage() {
         </div>
       </div>
 
-      <div style={{ background: '#252660', borderTop: '0.5px solid rgba(255,255,255,0.1)', padding: '10px 0 6px', display: 'flex', justifyContent: 'space-around', marginTop: '16px' }}>
+      <div style={{ position: 'fixed', bottom: 0, left: '50%', transform: 'translateX(-50%)', width: '100%', maxWidth: '430px', background: '#252660', borderTop: '0.5px solid rgba(255,255,255,0.1)', padding: '10px 0 6px', display: 'flex', justifyContent: 'space-around', zIndex: 100 }}>
         <button onClick={() => router.push('/home')} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '3px', color: '#5dcaa5', fontSize: '9px', background: 'none', border: 'none', cursor: 'pointer' }}>
           <span style={{ fontSize: '19px' }}>🏠</span>Home
         </button>
