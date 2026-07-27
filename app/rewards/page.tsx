@@ -45,7 +45,7 @@ export default function RewardsPage() {
   const [online, setOnline] = useState(true)
   const [activeFilter, setActiveFilter] = useState(0)
   const [redeemingId, setRedeemingId] = useState(null)
-  const [redeemedIds, setRedeemedIds] = useState<string[]>([])
+  const [redeemedIds, setRedeemedIds] = useState<number[]>([])
 
   useEffect(() => {
     setOnline(typeof navigator !== 'undefined' ? navigator.onLine : true)
