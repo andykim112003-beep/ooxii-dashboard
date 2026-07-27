@@ -54,6 +54,13 @@ async function completeSession() {
     setDone(true)
   }
 
+const params = new URLSearchParams(window.location.search)
+if (params.get('from') === 'test-flow') {
+  setSaving(false)
+  setDone(true)
+  return
+}
+
 useEffect(() => {
   if (hasRun.current) return
   hasRun.current = true

@@ -84,7 +84,7 @@ export default function TestFlow() {
     }
 
     setSaving(false)
-    router.push('/session-complete')
+    router.push('/session-complete?from=test-flow')
   }
 
   const inputStyle = {
