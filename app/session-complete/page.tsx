@@ -13,6 +13,15 @@ export default function SessionComplete() {
 
 
 async function completeSession() {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search)
+      if (params.get('from') === 'test-flow') {
+        setSaving(false)
+        setDone(true)
+        return
+      }
+    }
+
     setSaving(true)
     
     const { data: { user }, error: authError } = await supabase.auth.getUser()
@@ -53,13 +62,6 @@ async function completeSession() {
     setSaving(false)
     setDone(true)
   }
-
-const params = new URLSearchParams(window.location.search)
-if (params.get('from') === 'test-flow') {
-  setSaving(false)
-  setDone(true)
-  return
-}
 
 useEffect(() => {
   if (hasRun.current) return
