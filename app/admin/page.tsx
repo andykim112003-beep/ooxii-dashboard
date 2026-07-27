@@ -65,6 +65,22 @@ export default function AdminPage() {
         : 0
       setAvgStars(avg)
       setLoading(false)
+
+      const { data: rewardsData } = await supabase
+  .from('rewards')
+  .select('name, star_cost, region')
+
+if (rewardsData) {
+  const updated = defaultRegions.map(r => ({
+    ...r,
+    vals: [
+      rewardsData.find((rw: any) => rw.region === r.name && rw.name === 'Café voucher')?.star_cost || r.vals[0],
+      rewardsData.find((rw: any) => rw.region === r.name && rw.name === 'OOXii tester kit bag')?.star_cost || r.vals[1],
+      rewardsData.find((rw: any) => rw.region === r.name && rw.name === 'Training course access')?.star_cost || r.vals[2],
+    ]
+  }))
+  setRegions(updated)
+}
     }
     loadData()
   }, [])
@@ -216,6 +232,11 @@ export default function AdminPage() {
                 </div>
               ))}
             </div>
+            <button onClick={() => router.push('/admin/rewards')} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', background: 'rgba(255,255,255,0.07)', border: '0.5px solid rgba(255,255,255,0.13)', borderRadius: '12px', padding: '12px 14px', color: '#fff', fontSize: '12px', fontWeight: '500', cursor: 'pointer' }}>
+              <span>🎁 Manage rewards</span>
+              <span style={{ color: 'rgba(255,255,255,0.4)' }}>→</span>
+            </button>
+
             <div style={{ color: 'rgba(255,255,255,0.4)', fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Danger zone</div>
             <div style={{ background: 'rgba(255,100,100,0.08)', border: '0.5px solid rgba(255,100,100,0.2)', borderRadius: '12px', padding: '12px 14px' }}>
               <div style={{ color: 'rgba(255,255,255,0.7)', fontSize: '12px', marginBottom: '10px' }}>Reset all stars for a region</div>
