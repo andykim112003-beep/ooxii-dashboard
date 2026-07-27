@@ -76,7 +76,7 @@ export default function RewardsPage() {
     loadData()
   }, [])
 
-  async function handleRedeem(prize) {
+  async function handleRedeem(prize: any) {
     if (!online || balance < prize.cost || redeemingId !== null) return
     setRedeemingId(prize.id)
 
