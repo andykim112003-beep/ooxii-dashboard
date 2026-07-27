@@ -30,7 +30,7 @@ const tiers = [
   { tier: 4, label: 'Tier 4', min: 300 },
 ]
 
-const tierBadgeColors = {
+const tierBadgeColors: Record<number, string> = {
   1: '#8b7cf6',
   2: '#1d9e75',
   3: '#d4a72c',
