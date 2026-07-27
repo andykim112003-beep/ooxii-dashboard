@@ -78,7 +78,7 @@ export default function HomePage() {
           <h3 style={{ color: '#fff', fontSize: '14px', fontWeight: '500', margin: '0 0 3px' }}>New client</h3>
           <p style={{ color: 'rgba(255,255,255,0.55)', fontSize: '11px', margin: '0 0 10px', lineHeight: '1.4' }}>Conduct a test for a new client and set up their profile</p>
           <button
-            onClick={() => router.push('/session-complete')}
+            onClick={() => router.push('/test-flow')}
             style={{ display: 'inline-flex', alignItems: 'center', gap: '5px', background: 'rgba(255,255,255,0.1)', border: '0.5px solid rgba(255,255,255,0.22)', borderRadius: '20px', color: '#fff', fontSize: '11px', padding: '5px 12px', cursor: 'pointer' }}
           >
             → Start new test
