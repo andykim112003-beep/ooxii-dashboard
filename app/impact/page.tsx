@@ -39,7 +39,6 @@ export default function ImpactPage() {
     { label: '1,000 clients helped', target: 1000, points: 5 },
     { label: '50 festivals attended', target: 50, points: 4, value: festivals },
   ]
-
   if (loading) return (
     <main style={{ minHeight: '100dvh', background: '#2d2f6e', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <div style={{ color: 'rgba(255,255,255,0.6)', fontSize: '14px' }}>Loading...</div>
@@ -53,50 +52,49 @@ export default function ImpactPage() {
         <span style={{ background: '#1d9e75', color: '#e1f5ee', fontSize: '10px', padding: '2px 8px', borderRadius: '20px', fontWeight: '500' }}>Online</span>
       </div>
 
-      <div style={{ padding: '12px 16px 8px', color: 'rgba(255,255,255,0.9)', fontSize: '15px', fontWeight: '500', flexShrink: 0 }}>Social impact</div>
+      <div style={{ padding: '12px 16px 8px', color: 'rgba(255,255,255,0.9)', fontSize: '17px', fontWeight: '500', flexShrink: 0 }}>Your impact 🌍</div>
 
       <div style={{ padding: '0 12px', display: 'flex', flexDirection: 'column', gap: '10px', paddingBottom: '100px', flex: 1 }}>
         <div style={{ background: 'rgba(29,158,117,0.14)', border: '0.5px solid rgba(29,158,117,0.32)', borderRadius: '14px', padding: '16px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
-            <span style={{ fontSize: '20px' }}>🌍</span>
+            <span style={{ fontSize: '22px' }}>🌍</span>
             <div>
-              <div style={{ color: '#fff', fontSize: '15px', fontWeight: '500' }}>Your impact so far</div>
-              <div style={{ color: 'rgba(255,255,255,0.5)', fontSize: '11px', marginTop: '1px' }}>Lifetime contribution</div>
+              <div style={{ color: '#fff', fontSize: '16px', fontWeight: '500' }}>Lifetime impact</div>
+              <div style={{ color: 'rgba(255,255,255,0.55)', fontSize: '12px', marginTop: '1px' }}>People you've helped see clearly</div>
             </div>
           </div>
           <div style={{ display: 'flex', alignItems: 'baseline', gap: '5px', marginBottom: '4px' }}>
-            <span style={{ color: '#5dcaa5', fontSize: '40px', fontWeight: '500', lineHeight: '1' }}>{totalClients}</span>
-            <span style={{ color: 'rgba(255,255,255,0.55)', fontSize: '13px' }}>lives improved</span>
+            <span style={{ color: '#5dcaa5', fontSize: '44px', fontWeight: '600', lineHeight: '1' }}>{totalClients}</span>
+            <span style={{ color: 'rgba(255,255,255,0.6)', fontSize: '14px' }}>lives improved</span>
           </div>
-          <div style={{ color: 'rgba(255,255,255,0.45)', fontSize: '11px' }}>Across {festivals} festivals and clinics</div>
+          <div style={{ color: 'rgba(255,255,255,0.5)', fontSize: '12px' }}>Across {festivals} festivals and clinics</div>
         </div>
-
-        <div style={{ background: 'rgba(255,255,255,0.07)', border: '0.5px solid rgba(255,255,255,0.12)', borderRadius: '12px', padding: '12px 14px', display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <span style={{ fontSize: '22px' }}>⏱</span>
+        <div style={{ background: 'rgba(255,255,255,0.07)', border: '0.5px solid rgba(255,255,255,0.12)', borderRadius: '12px', padding: '14px', display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <span style={{ fontSize: '26px' }}>⏱</span>
           <div>
-            <div style={{ color: '#fff', fontSize: '22px', fontWeight: '500' }}>{hoursVolunteered}h</div>
-            <div style={{ color: 'rgba(255,255,255,0.45)', fontSize: '11px', marginTop: '2px' }}>Time volunteered</div>
+            <div style={{ color: '#fff', fontSize: '26px', fontWeight: '600' }}>{hoursVolunteered}h</div>
+            <div style={{ color: 'rgba(255,255,255,0.5)', fontSize: '12px', marginTop: '2px' }}>Time volunteered</div>
           </div>
         </div>
 
         <div style={{ background: 'rgba(255,255,255,0.08)', border: '0.5px solid rgba(255,255,255,0.15)', borderRadius: '14px', padding: '14px' }}>
-          <div style={{ color: 'rgba(255,255,255,0.45)', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.4px', marginBottom: '12px' }}>Impact milestones</div>
+          <div style={{ color: 'rgba(255,255,255,0.5)', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.4px', marginBottom: '12px' }}>Impact milestones</div>
           {milestones.map((m, i) => {
             const current = m.value !== undefined ? m.value : totalClients
             const pct = Math.min((current / m.target) * 100, 100)
             const complete = current >= m.target
             return (
-              <div key={i} style={{ marginBottom: i < milestones.length - 1 ? '12px' : '0' }}>
+              <div key={i} style={{ marginBottom: i < milestones.length - 1 ? '14px' : '0' }}>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '5px' }}>
-                  <span style={{ color: complete ? 'rgba(255,255,255,0.8)' : 'rgba(255,255,255,0.35)', fontSize: '12px', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                    {complete ? '✓' : '🔒'} {m.label}
+                  <span style={{ color: complete ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.4)', fontSize: '14px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    {complete ? '✅' : '🔒'} {m.label}
                   </span>
-                  <span style={{ color: complete ? '#5dcaa5' : 'rgba(255,255,255,0.25)', fontSize: '11px', fontWeight: '500' }}>+{m.points} ⭐</span>
+                  <span style={{ color: complete ? '#5dcaa5' : 'rgba(255,255,255,0.3)', fontSize: '12px', fontWeight: '600' }}>+{m.points} ⭐</span>
                 </div>
-                <div style={{ background: 'rgba(255,255,255,0.1)', borderRadius: '6px', height: '4px', overflow: 'hidden' }}>
+                <div style={{ background: 'rgba(255,255,255,0.1)', borderRadius: '6px', height: '5px', overflow: 'hidden' }}>
                   <div style={{ background: '#1d9e75', height: '100%', width: `${pct}%`, borderRadius: '6px' }}></div>
                 </div>
-                <div style={{ color: 'rgba(255,255,255,0.35)', fontSize: '10px', marginTop: '3px', textAlign: 'right' }}>
+                <div style={{ color: 'rgba(255,255,255,0.4)', fontSize: '11px', marginTop: '3px', textAlign: 'right' }}>
                   {current} / {m.target}
                 </div>
               </div>
@@ -104,16 +102,15 @@ export default function ImpactPage() {
           })}
         </div>
       </div>
-
       <div style={{ position: 'fixed', bottom: 0, left: '50%', transform: 'translateX(-50%)', width: '100%', maxWidth: '430px', background: '#252660', borderTop: '0.5px solid rgba(255,255,255,0.1)', padding: '10px 0 6px', display: 'flex', justifyContent: 'space-around', zIndex: 100 }}>
-        <button onClick={() => router.push('/home')} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '3px', color: 'rgba(255,255,255,0.35)', fontSize: '9px', background: 'none', border: 'none', cursor: 'pointer' }}>
-          <span style={{ fontSize: '19px' }}>🏠</span>Home
+        <button onClick={() => router.push('/home')} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '3px', color: 'rgba(255,255,255,0.35)', fontSize: '10px', background: 'none', border: 'none', cursor: 'pointer' }}>
+          <span style={{ fontSize: '21px' }}>🏠</span>Home
         </button>
-        <button onClick={() => router.push('/impact')} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '3px', color: '#5dcaa5', fontSize: '9px', background: 'none', border: 'none', cursor: 'pointer' }}>
-          <span style={{ fontSize: '19px' }}>🌍</span>Impact
+        <button onClick={() => router.push('/impact')} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '3px', color: '#5dcaa5', fontSize: '10px', background: 'none', border: 'none', cursor: 'pointer' }}>
+          <span style={{ fontSize: '21px' }}>🌍</span>Impact
         </button>
-        <button onClick={() => router.push('/rewards')} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '3px', color: 'rgba(255,255,255,0.35)', fontSize: '9px', background: 'none', border: 'none', cursor: 'pointer' }}>
-          <span style={{ fontSize: '19px' }}>🎁</span>Rewards
+        <button onClick={() => router.push('/rewards')} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '3px', color: 'rgba(255,255,255,0.35)', fontSize: '10px', background: 'none', border: 'none', cursor: 'pointer' }}>
+          <span style={{ fontSize: '21px' }}>🎁</span>Rewards
         </button>
       </div>
     </main>
