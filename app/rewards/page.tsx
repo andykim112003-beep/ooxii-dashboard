@@ -25,13 +25,28 @@ const defaultPrizes = [
   { id: 14, name: "Donation made in tester's name", cost: 400, icon: '❤️' },
 ]
 
+const tiers = [
+  { tier: 1, label: 'Tier 1', min: 50 },
+  { tier: 2, label: 'Tier 2', min: 100 },
+  { tier: 3, label: 'Tier 3', min: 200 },
+  { tier: 4, label: 'Tier 4', min: 300 },
+]
+
+const tierBadgeColors: Record<number, string> = {
+  1: '#8b7cf6',
+  2: '#1d9e75',
+  3: '#d4a72c',
+  4: '#e0698a',
+}
+
 export default function RewardsPage() {
   const router = useRouter()
   const [balance, setBalance] = useState(0)
   const [lifetime, setLifetime] = useState(0)
   const [loading, setLoading] = useState(true)
   const [online, setOnline] = useState(true)
-  const [redeemingId, setRedeemingId] = useState<number | null>(null)
+  const [activeFilter, setActiveFilter] = useState(0)
+  const [redeemingId, setRedeemingId] = useState(null)
   const [redeemedIds, setRedeemedIds] = useState<number[]>([])
 
   useEffect(() => {
