@@ -65,6 +65,22 @@ export default function AdminPage() {
         : 0
       setAvgStars(avg)
       setLoading(false)
+
+      const { data: rewardsData } = await supabase
+  .from('rewards')
+  .select('name, star_cost, region')
+
+if (rewardsData) {
+  const updated = defaultRegions.map(r => ({
+    ...r,
+    vals: [
+      rewardsData.find((rw: any) => rw.region === r.name && rw.name === 'Café voucher')?.star_cost || r.vals[0],
+      rewardsData.find((rw: any) => rw.region === r.name && rw.name === 'OOXii tester kit bag')?.star_cost || r.vals[1],
+      rewardsData.find((rw: any) => rw.region === r.name && rw.name === 'Training course access')?.star_cost || r.vals[2],
+    ]
+  }))
+  setRegions(updated)
+}
     }
     loadData()
   }, [])
