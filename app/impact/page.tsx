@@ -8,6 +8,10 @@ export default function ImpactPage() {
   const [totalClients, setTotalClients] = useState(0)
   const [festivals, setFestivals] = useState(0)
   const [hoursVolunteered, setHoursVolunteered] = useState(0)
+  const [region, setRegion] = useState('Australia')
+  const [communityClients, setCommunityClients] = useState(0)
+  const [communityTesters, setCommunityTesters] = useState(0)
+  const [communityFestivals, setCommunityFestivals] = useState(0)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -27,6 +31,39 @@ export default function ImpactPage() {
       setTotalClients(total)
       setFestivals(uniqueFestivals)
       setHoursVolunteered(hours)
+
+      const { data: userProfile } = await supabase
+        .from('users')
+        .select('region')
+        .eq('id', user.id)
+        .single()
+
+      const userRegion = userProfile?.region || 'Australia'
+      setRegion(userRegion)
+
+      const { data: regionUsers } = await supabase
+        .from('users')
+        .select('id')
+        .eq('region', userRegion)
+        .eq('role', 'tester')
+
+      setCommunityTesters(regionUsers?.length || 0)
+
+      if (regionUsers && regionUsers.length > 0) {
+        const regionUserIds = regionUsers.map((u: any) => u.id)
+
+        const { data: communitySessions } = await supabase
+          .from('sessions')
+          .select('clients_tested, festival_name')
+          .in('user_id', regionUserIds)
+
+        const communityTotal = communitySessions?.reduce((sum: number, s: any) => sum + s.clients_tested, 0) || 0
+        const communityUniqueFestivals = new Set(communitySessions?.map((s: any) => s.festival_name)).size
+
+        setCommunityClients(communityTotal)
+        setCommunityFestivals(communityUniqueFestivals)
+      }
+
       setLoading(false)
     }
     loadData()
@@ -53,14 +90,18 @@ export default function ImpactPage() {
         <span style={{ background: '#1d9e75', color: '#e1f5ee', fontSize: '10px', padding: '2px 8px', borderRadius: '20px', fontWeight: '500' }}>Online</span>
       </div>
 
-      <div style={{ padding: '12px 16px 8px', color: 'rgba(255,255,255,0.9)', fontSize: '15px', fontWeight: '500', flexShrink: 0 }}>Social impact</div>
+      <div style={{ padding: '12px 16px 4px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexShrink: 0 }}>
+        <span style={{ color: 'rgba(255,255,255,0.9)', fontSize: '15px', fontWeight: '500' }}>Social impact</span>
+        <span style={{ color: 'rgba(255,255,255,0.4)', fontSize: '11px' }}>📍 {region}</span>
+      </div>
 
       <div style={{ padding: '0 12px', display: 'flex', flexDirection: 'column', gap: '10px', paddingBottom: '100px', flex: 1 }}>
+
         <div style={{ background: 'rgba(29,158,117,0.14)', border: '0.5px solid rgba(29,158,117,0.32)', borderRadius: '14px', padding: '16px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
-            <span style={{ fontSize: '20px' }}>🌍</span>
+            <span style={{ fontSize: '20px' }}>👤</span>
             <div>
-              <div style={{ color: '#fff', fontSize: '15px', fontWeight: '500' }}>Your impact so far</div>
+              <div style={{ color: '#fff', fontSize: '14px', fontWeight: '500' }}>Your impact</div>
               <div style={{ color: 'rgba(255,255,255,0.5)', fontSize: '11px', marginTop: '1px' }}>Lifetime contribution</div>
             </div>
           </div>
@@ -79,8 +120,32 @@ export default function ImpactPage() {
           </div>
         </div>
 
+        <div style={{ background: 'rgba(93,202,165,0.1)', border: '0.5px solid rgba(93,202,165,0.25)', borderRadius: '14px', padding: '16px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
+            <span style={{ fontSize: '20px' }}>🌍</span>
+            <div>
+              <div style={{ color: '#fff', fontSize: '14px', fontWeight: '500' }}>{region} community</div>
+              <div style={{ color: 'rgba(255,255,255,0.5)', fontSize: '11px', marginTop: '1px' }}>{communityTesters} testers in your region</div>
+            </div>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0,1fr))', gap: '8px' }}>
+            <div style={{ background: 'rgba(255,255,255,0.08)', borderRadius: '10px', padding: '10px 8px', textAlign: 'center' }}>
+              <div style={{ color: '#5dcaa5', fontSize: '20px', fontWeight: '500' }}>{communityClients}</div>
+              <div style={{ color: 'rgba(255,255,255,0.45)', fontSize: '9px', marginTop: '2px', textTransform: 'uppercase', letterSpacing: '0.3px' }}>Lives improved</div>
+            </div>
+            <div style={{ background: 'rgba(255,255,255,0.08)', borderRadius: '10px', padding: '10px 8px', textAlign: 'center' }}>
+              <div style={{ color: '#5dcaa5', fontSize: '20px', fontWeight: '500' }}>{communityFestivals}</div>
+              <div style={{ color: 'rgba(255,255,255,0.45)', fontSize: '9px', marginTop: '2px', textTransform: 'uppercase', letterSpacing: '0.3px' }}>Festivals</div>
+            </div>
+            <div style={{ background: 'rgba(255,255,255,0.08)', borderRadius: '10px', padding: '10px 8px', textAlign: 'center' }}>
+              <div style={{ color: '#5dcaa5', fontSize: '20px', fontWeight: '500' }}>{communityTesters}</div>
+              <div style={{ color: 'rgba(255,255,255,0.45)', fontSize: '9px', marginTop: '2px', textTransform: 'uppercase', letterSpacing: '0.3px' }}>Testers</div>
+            </div>
+          </div>
+        </div>
+
         <div style={{ background: 'rgba(255,255,255,0.08)', border: '0.5px solid rgba(255,255,255,0.15)', borderRadius: '14px', padding: '14px' }}>
-          <div style={{ color: 'rgba(255,255,255,0.45)', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.4px', marginBottom: '12px' }}>Impact milestones</div>
+          <div style={{ color: 'rgba(255,255,255,0.45)', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.4px', marginBottom: '12px' }}>Your milestones</div>
           {milestones.map((m, i) => {
             const current = m.value !== undefined ? m.value : totalClients
             const pct = Math.min((current / m.target) * 100, 100)
